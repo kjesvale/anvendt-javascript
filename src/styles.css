@@ -1,0 +1,40 @@
+body {
+    background-color: #f7b2a6;
+    font-family: Georgia, "Times New Roman", serif;
+    margin: 3rem auto;
+    max-width: 40rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+input,
+select,
+textarea,
+button {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+}
+
+#number-input {
+    min-width: 7rem;
+}
+
+.title {
+    font-size: 3rem;
+}
+
+.subtitle {
+    margin-top: 2rem;
+    font-size: 2rem;
+}
+
+label,
+.field,
+#submit-button {
+    display: block;
+    margin-top: 1rem;
+}
+
+#result {
+    margin-top: 2rem;
+}

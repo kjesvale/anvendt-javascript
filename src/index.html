@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="styles.css" />
+        <title>Pokédex</title>
+    </head>
+    <body>
+        <h1>Pokédex</h1>
+        Welcome to the Pokédex!
+        <h2>New Pokémon</h2>
+        <form method="POST" action="/api/pokemon">
+            <label for="name-input">Name</label>
+            <input
+                required
+                name="name"
+                id="name-input"
+                type="text"
+                placeholder="Enter name"
+            />
+
+            <label for="type-select">Type</label>
+            <select required name="type" id="type-select">
+                <option value="">-- Choose a type --</option>
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="grass">Grass</option>
+                <option value="electric">Electric</option>
+            </select>
+
+            <label for="description-input">Description</label>
+            <textarea
+                required
+                name="description"
+                id="description-input"
+                placeholder="Write a short description"
+            ></textarea>
+
+            <label for="number-input">Number</label>
+            <input
+                required
+                name="number"
+                id="number-input"
+                type="number"
+                placeholder="Enter number"
+                min="1"
+                max="999"
+            />
+
+            <button id="submit-button">Register entry</button>
+            <p aria-live="polite" id="result" />
+        </form>
+    </body>
+</html>
