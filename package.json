@@ -4,7 +4,8 @@
     "version": "1.0.0",
     "scripts": {
         "start": "parcel src/*.html",
-        "build": "parcel build src/*.html --dist-dir server/public"
+        "prebuild": "rm -rf dist",
+        "build": "parcel build src/*.html"
     },
     "devDependencies": {
         "parcel": "^2.3.1",
