@@ -3,9 +3,9 @@
     "description": "En workshop for frontendprogrammet",
     "version": "1.0.0",
     "scripts": {
-        "start": "parcel src/*.html",
+        "start": "parcel solution/2/*.html",
         "prebuild": "rm -rf dist",
-        "build": "parcel build src/*.html"
+        "build": "parcel build solution/2/*.html"
     },
     "devDependencies": {
         "parcel": "^2.3.1",
