@@ -114,7 +114,7 @@ export function populatePokemonList() {
     });
 }
 
-export function paintPokemon(pokemon, container) {
+export function renderPokemon(pokemon, container) {
     console.log("Adding pokemon", pokemon.name);
 
     const pokemonNode = document.createElement("li");
