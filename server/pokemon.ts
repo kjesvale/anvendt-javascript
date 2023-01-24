@@ -1,29 +1,20 @@
-export enum PokemonType {
-    Fire = "fire",
-    Water = "water",
-    Grass = "grass",
-    Electric = "electric",
-}
+import pokemons from "../data/pokemon.json";
 
+export type PokemonType = "fire" | "water" | "grass" | "electric";
 export type Pokemon = {
+    number: number;
     name: string;
     type: PokemonType;
     description: string;
+    image: string;
 };
 
-export type Entry = Pokemon & {
-    number: number;
+export function getInitialPokemons(): Record<number, Pokemon> {
+    const initialPokemons: Record<number, Pokemon> = {};
+
+    pokemons.map((pokemon) => {
+        initialPokemons[pokemon.number] = pokemon as Pokemon;
+    });
+
+    return initialPokemons;
 }
-
-export let allPokemon: Record<number, Pokemon> = {
-    1: {
-        name: "Bulbasaur",
-        type: PokemonType.Grass,
-        description: "It can go for days without eating a single morsel. In the bulb on its back, it stores energy.",
-    },
-    25: {
-        name: "Pikachu",
-        type: PokemonType.Electric,
-        description: "It keeps its tail raised to monitor its surroundings. If you yank its tail, it will try to bite you.",
-    },
-};

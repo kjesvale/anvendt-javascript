@@ -6,13 +6,12 @@ pokemon.forEach((pokemon) => {
     addPokemon(pokemon, pokemonList);
 });
 
-function addPokemon(pokemon, element) {
+function addPokemon(pokemon, container) {
     console.log("Adding pokemon", pokemon.name);
 
     const pokemonNode = document.createElement("li");
     pokemonNode.classList.add("pokemon-entry");
 
-    /* Opprett tittel, beskrivelse og bilde */
     const pokemonTitleNode = document.createElement("h2");
     pokemonTitleNode.innerText = pokemon.name;
 
@@ -23,7 +22,6 @@ function addPokemon(pokemon, element) {
     pokemonImgNode.src = pokemon.image;
     pokemonImgNode.alt = `Image of ${pokemon.name}`;
 
-    /* Legg tittel og beskrivelse i en ny div for informasjonen */
     const pokemonInfoNode = document.createElement("div");
     pokemonInfoNode.classList.add("pokemon-info");
     pokemonInfoNode.appendChild(pokemonTitleNode);
@@ -34,5 +32,5 @@ function addPokemon(pokemon, element) {
     pokemonNode.appendChild(pokemonImgNode);
 
     /* Til slutt, legg til pokemon-noden i listen over pokemons */
-    element.appendChild(pokemonNode);
+    container.appendChild(pokemonNode);
 }

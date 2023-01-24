@@ -7,12 +7,11 @@
         <title>Pokédex</title>
     </head>
     <body>
-        <h1>Pokédex</h1>
-        <p>Welcome to the Pokédex!</p>
+        <h1 id="title">Pokédex</h1>
 
-        <button id="toggle-form-button">New pokemon</button>
-        <div id="new-pokemon-container" class="hidden">
-            <h2>New Pokémon</h2>
+        <button id="new-pokemon-dialog-button">New pokemon</button>
+        <dialog id="new-pokemon-dialog">
+            <h2>Register new pokemon</h2>
             <form method="POST" action="/api/pokemon">
                 <label for="name-input">Name</label>
                 <input
@@ -40,20 +39,22 @@
                     placeholder="Write a short description"
                 ></textarea>
 
-                <label for="number-input">Number</label>
-                <input
-                    required
-                    name="number"
-                    id="number-input"
-                    type="number"
-                    placeholder="Enter number"
-                    min="1"
-                    max="999"
-                />
+                <label>
+                    Number
+                    <input
+                        required
+                        name="number"
+                        type="number"
+                        placeholder="Enter number"
+                    />
+                </label>
 
                 <button id="submit-button">Register entry</button>
             </form>
-        </div>
-        <script src="./index.js"></script>
+        </dialog>
+
+        <ul id="pokemon-list"></ul>
+
+        <script type="module" src="./index.js"></script>
     </body>
 </html>

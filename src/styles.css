@@ -1,9 +1,3 @@
-/* Til oppgave 2 */
-
-.hidden {
-    display: none;
-}
-
 /* Default styling */
 
 html {
@@ -24,10 +18,6 @@ textarea,
 button {
     margin-top: 0.5rem;
     padding: 0.5rem;
-}
-
-#number-input {
-    min-width: 7rem;
 }
 
 .title {

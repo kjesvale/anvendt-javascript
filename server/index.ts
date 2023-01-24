@@ -1,21 +1,24 @@
 import express from "express";
-import { allPokemon, Entry } from "./pokemon";
+import { getInitialPokemons, Pokemon } from "./pokemon";
 
 const app = express();
 const port = 3000;
+const pokemons = getInitialPokemons();
 
-app.use(express.static("public"));
+/* Enable file serving from public folder */
+// app.use(express.static("public"));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/api/pokemon", (_, res) => {
-    res.json(allPokemon);
+    res.json(pokemons);
 });
 
 app.get("/api/pokemon/:id", (req, res) => {
     const index = parseInt(req.params.id);
-    const pokemon = allPokemon[index]
-    
+    const pokemon = pokemons[index];
+
     if (pokemon) {
         res.json(pokemon);
     } else {
@@ -24,14 +27,12 @@ app.get("/api/pokemon/:id", (req, res) => {
 });
 
 app.post("/api/pokemon", (req, res) => {
-    const entry = req.body as Entry;
-    const { number, ...pokemon } = entry;
-
-    const message = `Stored pokemon entry #${number}, the ${pokemon.type} type pokemon «${pokemon.name}»!`;
+    const pokemon = req.body as Pokemon;
+    const message = `Stored pokemon entry #${pokemon.number}, the ${pokemon.type} type pokemon «${pokemon.name}»!`;
 
     console.log(message);
 
-    allPokemon[number] = pokemon;
+    pokemons[pokemon.number] = pokemon;
     res.status(201).send(message);
 });
 

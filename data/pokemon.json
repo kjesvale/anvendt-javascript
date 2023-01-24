@@ -1,23 +1,27 @@
 [
     {
+        "number": 1,
         "name": "Bulbasaur",
         "type": "grass",
         "description": "A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon.",
         "image": "https://www.serebii.net/xy/pokemon/001.png"
     },
     {
+        "number": 4,
         "name": "Charmander",
         "type": "fire",
         "description": "Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail.",
         "image": "https://www.serebii.net/xy/pokemon/004.png"
     },
     {
+        "number": 7,
         "name": "Squirtle",
         "type": "water",
         "description": "After birth, its back swells and hardens into a shell. Powerfully sprays foam from its mouth.",
         "image": "https://www.serebii.net/xy/pokemon/007.png"
     },
     {
+        "number": 25,
         "name": "Pikachu",
         "type": "electric",
         "description": "It keeps its tail raised to monitor its surroundings. If you yank its tail, it will try to bite you.",

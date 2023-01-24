@@ -34,39 +34,56 @@ Prøv å bygge siden for produksjon ved å kjøre `npm run build` i rotmappen. S
 
 💡 Javascript- og CSS-filene i produksjonsbygget får automatisk en tilfeldig suffix, som endres hver gang innholdet i filene endres. Årsaken til dette er at de lettere kan caches av en filserver.
 
-## Oppgave 2: Document Object-modellen
+## Oppgave 2: Manipulering av HTML
 
-### 2a)
+I denne oppgaven skal vi bruke Javascript og DOM-en til å manipulere HTML-en på nettsiden vår.
+
+### 2a) En pokemon
 
 Bruk Javascript til å opprette følgende struktur i HTML.
 
 ```html
 <li class="pokemon-entry">
     <div class="pokemon-info">
-        <h2>{pokemon.name}</h2>
-        <p>{pokemon.description}</p>
+        <h2>Bulbasaur</h2>
+        <p>It can go for days without eating a single morsel. In the bulb on its back, it stores energy.</p>
     </div>
-    <img src="{pokemon.image}" alt="Image of {pokemon.name}" />
+    <img src="https://www.serebii.net/xy/pokemon/001.png" alt="Image of Bulbasaur" />
 </div>
 ```
 
-Du kan ta utgangspunkt i denne pokemonen:
 
-```js
-const pokemon = {
-    name: "Bulbasaur",
-    description: "It can go for days without eating a single morsel. In the bulb on its back, it stores energy.",
-    image: "https://www.serebii.net/xy/pokemon/001.png",
-};
-```
+### 2b) Flere pokemons!
 
-### 2b)
+Filen `/data/pokemon.json` inneholder en liste med flere pokemons.
 
-Bruk koden fra forrige oppgave og lag en funksjon `addPokemon(pokemon, element)` som oppretter et pokemon-element og legger det til i elementet.
+✍️ Bruk koden fra forrige oppgave og lag en funksjon `addPokemon(pokemon, container)` som oppretter et pokemon-element og legger den til i container-elementet. Bruk funksjonen til å bygge opp en pokedex basert på JSON-listen.
 
-I `/data/pokemon.json` finner du en JSON-liste med litt flere pokemon. Bruk funksjonen til å legge alle disse inn i pokedexen.
+💡 Du kan importere JSON-filen med `import`-syntaksen, gitt at du har lenket til Javascript-koden din med `<script type="module">`. Da vil koden din behandles som en [Javascript-modul](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
 ## Oppgave 3: Hendelser
 
-I CSS-en finnes det en klasse `enlarge` som forstørrer et element. Legg dette klassenavnet på bildene til pokemonene når du hovrer musa over dem, slik at brukeren får se et større bilde.
+### 3a) Forstørr bilder
 
+I CSS-en finnes det en klasse `enlarge` som forstørrer et element. Legg dette klassenavnet på bildet til pokemon-elementene når du legger musepekeren over dem, slik at brukeren får se et større bilde.
+
+### 3b)
+
+
+## Oppgave 4: Hendelser og skjemaer
+
+- 4a) Kansellere event ved form submit
+- 4b) Progressive enhancement av skjema
+
+## Oppgave 5: Fetch
+
+Til de neste oppgavene trenger vi en server. Den er ferdiglaget, og kan startes i et nytt kommandovindu slik:
+
+```
+cd server && npm run start
+```
+
+- 5a) Bruke Fetch til å hente data fra serveren
+- 5b) Tegne opp dataen med funksjonen fra oppgave 2b
+
+## Oppgave 6: 
