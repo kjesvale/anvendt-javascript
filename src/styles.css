@@ -9,35 +9,29 @@ body {
     margin: 3rem auto;
     max-width: 40rem;
     padding: 1rem;
-    font-size: 1.2rem;
-}
-
-input,
-select,
-textarea,
-button {
-    margin-top: 0.5rem;
-    padding: 0.5rem;
 }
 
 .title {
     font-size: 3rem;
 }
 
-.subtitle {
-    margin-top: 2rem;
-    font-size: 2rem;
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-label,
-.field,
-#submit-button {
-    display: block;
-    margin-top: 1rem;
+form > label,
+form > button {
+    margin-top: 0.5rem;
 }
 
-#result {
-    margin-top: 2rem;
+dialog {
+    max-width: 14rem;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
 }
 
 /* Predefinert styling for oppgaver */

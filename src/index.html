@@ -7,48 +7,52 @@
         <title>Pokédex</title>
     </head>
     <body>
-        <h1>Pokédex</h1>
-        <p>Welcome to the Pokédex!</p>
-        <h2>New Pokémon</h2>
-        <form method="POST" action="/api/pokemon">
-            <label for="name-input">Name</label>
-            <input
-                required
-                name="name"
-                id="name-input"
-                type="text"
-                placeholder="Enter name"
-            />
+        <h1 id="title">Pokédex</h1>
 
-            <label for="type-select">Type</label>
-            <select required name="type" id="type-select">
-                <option value="">-- Choose a type --</option>
-                <option value="fire">Fire</option>
-                <option value="water">Water</option>
-                <option value="grass">Grass</option>
-                <option value="electric">Electric</option>
-            </select>
+        <dialog id="pokemon-dialog">
+            <h2>Register new pokemon</h2>
+            <form method="POST" action="/api/pokemon">
+                <label for="name-input">Name</label>
+                <input
+                    required
+                    name="name"
+                    id="name-input"
+                    type="text"
+                    placeholder="Enter name"
+                />
 
-            <label for="description-input">Description</label>
-            <textarea
-                required
-                name="description"
-                id="description-input"
-                placeholder="Write a short description"
-            ></textarea>
+                <label for="type-select">Type</label>
+                <select required name="type" id="type-select">
+                    <option value="">-- Choose a type --</option>
+                    <option value="fire">Fire</option>
+                    <option value="water">Water</option>
+                    <option value="grass">Grass</option>
+                    <option value="electric">Electric</option>
+                </select>
 
-            <label for="number-input">Number</label>
-            <input
-                required
-                name="number"
-                id="number-input"
-                type="number"
-                placeholder="Enter number"
-                min="1"
-                max="999"
-            />
+                <label for="description-input">Description</label>
+                <textarea
+                    required
+                    name="description"
+                    id="description-input"
+                    placeholder="Write a short description"
+                ></textarea>
 
-            <button id="submit-button">Register entry</button>
-        </form>
+                <label for="number-input">Number</label>
+                <input
+                    required
+                    name="number"
+                    id="number-input"
+                    type="number"
+                    placeholder="Enter number"
+                />
+
+                <button id="submit-button">Register pokemon</button>
+            </form>
+        </dialog>
+
+        <ul id="pokemon-list"></ul>
+
+        <script type="module" src="./index.js"></script>
     </body>
 </html>

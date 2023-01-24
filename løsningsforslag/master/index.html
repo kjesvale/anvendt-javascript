@@ -9,10 +9,12 @@
     <body>
         <h1 id="title">Pokédex</h1>
 
-        <button id="new-pokemon-dialog-button">New pokemon</button>
-        <dialog id="new-pokemon-dialog">
+        <!-- Oppgave 3 -->
+        <button id="pokemon-dialog-button">New pokemon</button>
+
+        <dialog id="pokemon-dialog">
             <h2>Register new pokemon</h2>
-            <form method="POST" action="/api/pokemon">
+            <form id="pokemon-form" method="POST" action="/api/pokemon">
                 <label for="name-input">Name</label>
                 <input
                     required
@@ -39,20 +41,20 @@
                     placeholder="Write a short description"
                 ></textarea>
 
-                <label>
-                    Number
-                    <input
-                        required
-                        name="number"
-                        type="number"
-                        placeholder="Enter number"
-                    />
-                </label>
+                <label for="number-input">Number</label>
+                <input
+                    required
+                    name="number"
+                    id="number-input"
+                    type="number"
+                    placeholder="Enter number"
+                />
 
-                <button id="submit-button">Register entry</button>
+                <button id="submit-button">Register pokemon</button>
             </form>
         </dialog>
 
+        <!-- Oppgave 2 -->
         <ul id="pokemon-list"></ul>
 
         <script type="module" src="./index.js"></script>

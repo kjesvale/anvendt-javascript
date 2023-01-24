@@ -61,21 +61,7 @@ Filen `/data/pokemon.json` inneholder en liste med flere pokemons.
 
 💡 Du kan importere JSON-filen med `import`-syntaksen, gitt at du har lenket til Javascript-koden din med `<script type="module">`. Da vil koden din behandles som en [Javascript-modul](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
-## Oppgave 3: Hendelser
-
-### 3a) Forstørr bilder
-
-I CSS-en finnes det en klasse `enlarge` som forstørrer et element. Legg dette klassenavnet på bildet til pokemon-elementene når du legger musepekeren over dem, slik at brukeren får se et større bilde.
-
-### 3b)
-
-
-## Oppgave 4: Hendelser og skjemaer
-
-- 4a) Kansellere event ved form submit
-- 4b) Progressive enhancement av skjema
-
-## Oppgave 5: Fetch
+## Oppgave 3: Hendelser og skjemaer
 
 Til de neste oppgavene trenger vi en server. Den er ferdiglaget, og kan startes i et nytt kommandovindu slik:
 
@@ -83,7 +69,33 @@ Til de neste oppgavene trenger vi en server. Den er ferdiglaget, og kan startes 
 cd server && npm run start
 ```
 
-- 5a) Bruke Fetch til å hente data fra serveren
-- 5b) Tegne opp dataen med funksjonen fra oppgave 2b
+### 3a) Åpne dialog
 
-## Oppgave 6: 
+HTML-dokumentet inneholder et skjema for å registrere nye pokemons og sende dem til serveren, men dette er foreløbig skjult bak en dialog.
+
+✍️ Lag en knapp som åpner dialogen når du trykker på knappen.
+
+⚠️ Obs! Vi bruker fremdeles ikke serveren i appen vår, så registrerte pokemons vil foreløbig ikke dukke opp i listen.
+
+### 3d) Stopp submit-hendelsen
+
+Når du registrerer en pokemon i skjemaet, sendes du av gårde til URL-en i `method`-attributten til form-elementet. Dette fungerer greit i tradisjonelle webservere, men vår server er bare et API! Den produserer ikke HTML i seg selv, så siden du lander på ser veldig spartansk ut.
+
+✍️ Vi ønsker å forbedre brukeropplevelsen med Javascript. Uten å endre på HTML-strukturen, stopp submit-hendelsen slik at brukeren forblir på nettsiden etter man har klikket på registreringsknappen.
+
+### 3c) Bonusoppgave: Lukk modalen
+
+Du kan lukke en dialog ved å trykke på Escape. Men vi ønsker i tillegg å lukke modalen når brukeren trykker utenfor modalets omkrets.
+
+✍️ Lukk modalen når bruker trykker utenfor modalen.
+
+
+## Oppgave 4: Serverkommunikasjon med Javascript
+
+Nå skjer det ingenting når vi registrerer en ny pokemon. La oss gjøre noe med det!
+
+### 4a) Lagre pokemons på serveren
+
+### 4b) Hent pokemons fra serveren
+
+Bruke Fetch til å hente data fra serveren. Tegn opp dataen med funksjonen fra oppgave 2.
