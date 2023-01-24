@@ -4,12 +4,13 @@ import {
     configureCloseDialog,
     configureForm,
 } from "./oppgave3";
-import { handleFormSubmit } from "./oppgave4";
+import { handleFormSubmit, populatePokemonListFromServer } from "./oppgave4";
 
-populatePokemonList();
+// populatePokemonList();
 
 configureDialog();
 configureCloseDialog();
 configureForm();
 
 handleFormSubmit();
+populatePokemonListFromServer();

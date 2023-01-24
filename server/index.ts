@@ -12,7 +12,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/api/pokemon", (_, res) => {
-    res.json(pokemons);
+    const pokemonsSortedByNumber = Array.from(Object.values(pokemons)).sort(
+        (pokemon, otherPokemon) => pokemon.number - otherPokemon.number
+    );
+
+    res.json(pokemonsSortedByNumber);
 });
 
 app.get("/api/pokemon/:id", (req, res) => {
@@ -27,13 +31,25 @@ app.get("/api/pokemon/:id", (req, res) => {
 });
 
 app.post("/api/pokemon", (req, res) => {
-    const pokemon = req.body as Pokemon;
-    const message = `Stored pokemon entry #${pokemon.number}, the ${pokemon.type} type pokemon «${pokemon.name}»!`;
+    try {
+        const pokemon = req.body as Pokemon;
+        const paddedNumber = String(pokemon.number).padStart(3, "0");
 
-    console.log(message);
+        pokemons[pokemon.number] = {
+            ...pokemon,
+            image: `https://www.serebii.net/xy/pokemon/${paddedNumber}.png`,
+        };
 
-    pokemons[pokemon.number] = pokemon;
-    res.status(201).send(message);
+        const message = `Stored pokemon entry #${pokemon.number}, the ${pokemon.type} type pokemon «${pokemon.name}»!`;
+
+        console.log(message);
+        res.status(201).send(message);
+    } catch (e) {
+        const message = `Klarte ikke å lagre pokemon fordi «body» var på feil format.`;
+
+        console.log(message);
+        res.status(403).send(message);
+    }
 });
 
 app.listen(port, () => {

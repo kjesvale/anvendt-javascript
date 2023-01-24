@@ -8,7 +8,7 @@ export function populatePokemonList() {
     });
 }
 
-function addPokemon(pokemon, container) {
+export function addPokemon(pokemon, container) {
     console.log("Adding pokemon", pokemon.name);
 
     const pokemonNode = document.createElement("li");

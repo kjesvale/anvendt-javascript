@@ -1,26 +1,52 @@
-export function handleFormSubmit() {
-    const form = document.getElementById("pokemon-form");
+import { addPokemon } from "./oppgave2";
 
+const form = document.getElementById("pokemon-form");
+const dialog = document.getElementById("pokemon-dialog");
+const pokemonList = document.getElementById("pokemon-list");
+
+/* Oppgave 4a) */
+export function handleFormSubmit() {
     form.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        const formData = new URLSearchParams(new FormData(form));
+        const formData = new FormData(form);
+        const pokemon = Object.fromEntries(formData);
 
-        registerPokemon(formData);
+        registerPokemon(pokemon);
     });
 }
 
-async function registerPokemon(formData) {
+async function registerPokemon(pokemon) {
+    console.log("formdata", pokemon);
+
     const response = await fetch("/api/pokemon", {
         method: "POST",
-        body: formData,
+        body: JSON.stringify(pokemon),
         headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Type": "application/json",
         },
     });
 
     if (response.ok) {
         window.alert(await response.text());
-        document.getElementById("pokemon-dialog").close();
+
+        dialog.close();
+        form.reset();
+
+        populatePokemonListFromServer();
     }
+}
+
+/* Oppgave 4b) */
+export async function populatePokemonListFromServer() {
+    const response = await fetch("/api/pokemon");
+    const pokemons = await response.json();
+
+    // Fjern alt fra listen
+    pokemonList.textContent = "";
+
+    // Legg til pokemons fra server
+    pokemons.forEach((pokemon) => {
+        addPokemon(pokemon, pokemonList);
+    });
 }
