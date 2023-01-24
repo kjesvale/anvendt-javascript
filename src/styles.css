@@ -1,11 +1,20 @@
 /* Default styling */
 
+:root {
+    --primary: #f7b2a6;
+    --primary-light: #fbd8d2;
+}
+
 html {
-    background-color: #f7b2a6;
+    background-color: var(--primary);
+}
+
+body,
+textarea {
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 body {
-    font-family: Helvetica, Arial, sans-serif;
     margin: 3rem auto;
     max-width: 40rem;
     padding: 1rem;
@@ -32,6 +41,22 @@ dialog {
 
 dialog::backdrop {
     background: rgba(0, 0, 0, 0.5);
+}
+
+button {
+    padding: 0.5rem;
+    background: var(--primary-light);
+    border-radius: 0.25rem;
+}
+
+button:hover {
+    background: white;
+}
+
+input,
+select,
+textarea {
+    padding: 0.5rem;
 }
 
 /* Predefinert styling for oppgaver */
