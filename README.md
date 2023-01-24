@@ -174,7 +174,16 @@ HTML-dokumentet inneholder et skjema for å registrere nye pokemons og sende dem
 <details>
 <summary>🗝 Løsningsforslag</summary>
 
+Over dialogen i HTML-strukturen:
+
+```html
+<button id="pokemon-dialog-button">New pokemon</button>
+```
+
+I Javascript:
+
 ```js
+// index.js
 configureDialog();
 
 export function configureDialog() {
