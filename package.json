@@ -3,7 +3,8 @@
     "description": "En workshop for frontendprogrammet",
     "version": "1.0.0",
     "scripts": {
-        "start": "parcel løsningsforslag/master/*.html",
+        "start": "parcel src/*.html",
+        "start:solution": "parcel solution/*.html",
         "prebuild": "rm -rf dist",
         "build": "parcel build src/*.html"
     },

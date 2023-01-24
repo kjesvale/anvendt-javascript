@@ -1,4 +1,4 @@
-import { addPokemon } from "./oppgave2";
+import { renderPokemon } from "./oppgave2";
 
 const form = document.getElementById("pokemon-form");
 const dialog = document.getElementById("pokemon-dialog");
@@ -47,6 +47,6 @@ export async function populatePokemonListFromServer() {
 
     // Legg til pokemons fra server
     pokemons.forEach((pokemon) => {
-        addPokemon(pokemon, pokemonList);
+        renderPokemon(pokemon, pokemonList);
     });
 }

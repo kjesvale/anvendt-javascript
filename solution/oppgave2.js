@@ -1,12 +1,14 @@
-import pokemon from "../../data/pokemon.json";
+import pokemon from "../data/pokemon.json";
 
-const pokemonList = document.getElementById("pokemon-list");
+export function populatePokemonList() {
+    const pokemonList = document.getElementById("pokemon-list");
 
-pokemon.forEach((pokemon) => {
-    addPokemon(pokemon, pokemonList);
-});
+    pokemon.forEach((pokemon) => {
+        renderPokemon(pokemon, pokemonList);
+    });
+}
 
-function addPokemon(pokemon, container) {
+export function renderPokemon(pokemon, container) {
     console.log("Adding pokemon", pokemon.name);
 
     const pokemonNode = document.createElement("li");

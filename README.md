@@ -130,15 +130,6 @@ export function paintPokemon(pokemon, container) {
     pokemonImgNode.src = pokemon.image;
     pokemonImgNode.alt = `Image of ${pokemon.name}`;
 
-    /* Zoom pokemons på hover */
-    pokemonImgNode.addEventListener("mouseenter", () => {
-        pokemonImgNode.classList.add("enlarge");
-    });
-
-    pokemonImgNode.addEventListener("mouseleave", () => {
-        pokemonImgNode.classList.remove("enlarge");
-    });
-
     const pokemonInfoNode = document.createElement("div");
     pokemonInfoNode.classList.add("pokemon-info");
     pokemonInfoNode.appendChild(pokemonTitleNode);
