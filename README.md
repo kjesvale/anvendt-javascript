@@ -2,7 +2,7 @@
 
 En workshop for frontendprogrammet til Bekk.
 
-Målet med workshopen er å lære seg konsepter innen Javascript; som DOM-en, hendelser, asynkronitet og nettverkskall. Og samtidig lage en aldri så liten [Pokédex](https://github.com/kjesvale/anvendt-javascript/assets/screenshots/register-pokemon.png)!
+Målet med workshopen er å lære seg konsepter innen Javascript; som DOM-en, hendelser, asynkronitet og nettverkskall. Og samtidig lage en aldri så liten [Pokédex](https://github.com/kjesvale/anvendt-javascript/blob/main/assets/screenshots/register-pokemon.png)!
 
 ## Kom i gang
 
