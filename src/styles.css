@@ -57,6 +57,8 @@ input,
 select,
 textarea {
     padding: 0.5rem;
+    border: 2px solid lightgray;
+    border-radius: 0.25rem;
 }
 
 /* Predefinert styling for oppgaver */
