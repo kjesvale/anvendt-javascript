@@ -2,6 +2,8 @@
 
 En workshop for frontendprogrammet til Bekk.
 
+Målet med workshopen er å lære seg konsepter innen Javascript; som DOM-en, hendelser, asynkronitet og nettverkskall. Og samtidig lage en aldri så liten [Pokédex](https://github.com/kjesvale/anvendt-javascript/assets/screenshots/register-pokemon.png)!
+
 ## Kom i gang
 
 Klon prosjektet og installer frontend og backend:
@@ -92,7 +94,7 @@ pokemonList.appendChild(pokemonNode);
 
 ### 2b) Flere pokemons!
 
-Filen `/data/pokemon.json` inneholder en liste med flere pokemons.
+Filen `/assets/pokemon.json` inneholder en liste med flere pokemons.
 
 ✍️ Bruk koden fra forrige oppgave og lag en funksjon `addPokemon(pokemon, container)` som oppretter et pokemon-element og legger den til i container-elementet. Bruk funksjonen til å bygge opp en pokedex basert på JSON-listen.
 
@@ -102,7 +104,7 @@ Filen `/data/pokemon.json` inneholder en liste med flere pokemons.
 <summary>🗝 Løsningsforslag</summary>
 
 ```js
-import pokemon from "../../data/pokemon.json";
+import pokemon from "../../assets/pokemon.json";
 
 populatePokemonList();
 

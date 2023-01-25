@@ -1,4 +1,4 @@
-import pokemon from "../data/pokemon.json";
+import pokemon from "../assets/pokemon.json";
 
 export function populatePokemonList() {
     const pokemonList = document.getElementById("pokemon-list");

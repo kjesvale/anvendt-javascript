@@ -1,4 +1,4 @@
-import pokemons from "../data/pokemon.json";
+import pokemons from "../assets/pokemon.json";
 
 export type PokemonType = "fire" | "water" | "grass" | "electric";
 export type Pokemon = {
