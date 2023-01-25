@@ -2,47 +2,78 @@
 
 En workshop for frontendprogrammet til Bekk.
 
-Målet med workshopen er å lære seg konsepter innen Javascript; som DOM-en, hendelser, asynkronitet og nettverkskall. Og samtidig lage en aldri så liten [Pokédex](https://github.com/kjesvale/anvendt-javascript/blob/main/assets/screenshots/register-pokemon.png)!
+Målet med workshopen er å lære seg konsepter innen Javascript; DOM-en, hendelser, asynkronitet og nettverkskall. Og samtidig lage en aldri så liten [Pokédex](https://github.com/kjesvale/anvendt-javascript/blob/main/assets/screenshots/register-pokemon.png)!
 
 ## Kom i gang
 
-Klon prosjektet og installer frontend og backend:
+Klon og installer prosjektet:
 
 ```
-git clone https://github.com/kjesvale/progressive-enhancement-workshop
-cd progressive-enhancement-workshop
+git clone https://github.com/kjesvale/anvendt-javascript
+cd anvendt-javascript
 npm install
-cd server && npm install
 ```
 
-Prosjektet bygger med _Parcel_, et «no config» byggverktøy. Parcel starter en utviklingsserver med _hot reloading_ slik at nettsiden lastes på nytt hver gang vi gjør en endring i kildekoden.
+Prosjektet bygger med [Parcel](https://parceljs.org/), et byggverktøy som ikke krever noen konfigurasjon, men lar oss fokusere på koden vår.
 
-Start utviklingsserveren:
+Start utviklingsserveren slik:
 
 ```
 npm run start
-cd server && npm run start
 ```
 
-Nettsiden vil da kjøre på [http://localhost:1234](http://localhost:1234)
+Nå vil nettsiden kjøre på [http://localhost:1234](http://localhost:1234), og lastes på nytt hver gang du gjør endringer i `src`-mappen.
+
+## Oppgavene
+
+Løs oppgavene i `src`-mappen. Alle oppgavene har et løsningsforslag, som du kan avsløre ved å klikke på nøkkelsymbolet:
+
+- ✍️ Oppgave
+- 💡 Hint, tips eller triks
+- 🗝 Løsningsforslag
+
 
 ## Oppgave 1: Bruk Javascript
 
-Hvis du åpner `src`-mappen, ser du at nettsiden bare består av en HTML-side og litt styling. Vi har med andre ord ingen Javascript, men det kan vi gjøre noe med!
+Hvis du åpner `src`-mappen, ser du at nettsiden bare består av to filer: en `index.html`-side og et stilark i `styles.css`. Du skal ikke gjøre noen store endringer i disse filene, for denne workshopen kommer til å fokusere på Javascript.
 
-✍️ Lag en Javascript-fil `index.js` som du importerer fra `index.html`. I filen kan du for eksempel logge noe til konsollen.
+### 1a) Et script
 
-Prøv å bygge siden for produksjon ved å kjøre `npm run build` i rotmappen. Se på filene som dukket opp i `dist`-mappen – finner du referansen til Javascript-filen fra HTML?
+✍️ Lag en Javascript-fil `index.js` som du importerer fra `index.html`. Logg noe til konsollen, og verifiser at det logges i nettleseren.
 
-💡 Javascript- og CSS-filene i produksjonsbygget får automatisk en tilfeldig suffix, som endres hver gang innholdet i filene endres. Årsaken til dette er at de lettere kan caches av en filserver.
+💡 Bruk gjerne syntaksen `<script type="module">`. Dette forteller nettleseren at scriptet følger det nye modulsystemet i Javascript, og du kan bruke `import`- og `export`-syntaksen for å lenke mellom filer. Da er det lett å splitte opp koden i flere filer når det føles naturlig.
 
 ## Oppgave 2: Manipulering av HTML
 
-I denne oppgaven skal vi bruke Javascript og DOM-en til å manipulere HTML-en på nettsiden vår.
+Foreløbig er det ikke så mye spennende på nettsiden vår. I denne oppgaven skal vi benytte Javascript og DOM-en til å tegne opp, eller «rendre» mer innhold – dynamisk!
 
-### 2a) En pokemon
+### 2a) Tegn en pokemon
 
-Bruk Javascript til å opprette følgende struktur i HTML.
+Hvis du åpner `index.html`, ser du at siden vår inneholder en tom liste med id `pokemon-list`.
+
+✍️ Kun ved hjelp av Javascript, tegn opp følgende Pokemon i lista:
+
+```html
+<li class="pokemon-entry">Bulbasaur</li>
+```
+
+<details>
+<summary>🗝 Løsningsforslag</summary>
+
+```js
+const entry = document.createElement("li");
+
+entry.className = "pokemon-entry";
+entry.innerText = "Bulbasaur";
+
+document.getElementById("pokemon-list").appendChild(entry);
+```
+</details>
+
+### 2b) Beskrivelse
+
+En av Pokedexens viktigste egenskap er å gi oss en beskrivelse av hver Pokemon. Utvid koden fra forrige oppgave til å tegne opp følgende HTML-struktur:
+
 
 ```html
 <li class="pokemon-entry">
@@ -50,7 +81,6 @@ Bruk Javascript til å opprette følgende struktur i HTML.
         <h2>Bulbasaur</h2>
         <p>It can go for days without eating a single morsel. In the bulb on its back, it stores energy.</p>
     </div>
-    <img src="https://www.serebii.net/xy/pokemon/001.png" alt="Image of Bulbasaur" />
 </div>
 ```
 
@@ -58,91 +88,121 @@ Bruk Javascript til å opprette følgende struktur i HTML.
 <summary>🗝 Løsningsforslag</summary>
 
 ```js
-/* Opprett pokemon-noden som et listeelement */
-const pokemonNode = document.createElement("li");
-pokemonNode.classList.add("pokemon-entry");
+// Opprett elementene med riktige attributter
+const entry = document.createElement("li");
+entry.className = "pokemon-entry";
 
-/* Opprett tittel, beskrivelse og bilde */
-const pokemonTitleNode = document.createElement("h2");
-pokemonTitleNode.innerText = "Bulbasaur";
+const name = document.createElement("h2");
+name.innerText = "Bulbasaur";
 
-const pokemonDescNode = document.createElement("p");
-pokemonDescNode.innerText =
-    "It can go for days without eating a single morsel. In the bulb on its back, it stores energy.";
+const description = document.createElement("p");
+description.innerText = "It can go for days without eating a single morsel. In the bulb on its back, it stores energy.";
 
-const pokemonImgNode = document.createElement("img");
-pokemonImgNode.src = "https://www.serebii.net/xy/pokemon/001.png";
-pokemonImgNode.alt = `Image of Bulbasaur`;
+const info = document.createElement("div");
+info.className = "pokemon-info";
 
-/* Legg tittel og beskrivelse i en ny div for informasjonen */
-const pokemonInfoNode = document.createElement("div");
-pokemonInfoNode.classList.add("pokemon-info");
-pokemonInfoNode.appendChild(pokemonTitleNode);
-pokemonInfoNode.appendChild(pokemonDescNode);
+// Sett alle elementene sammen
+const list = document.getElementById("pokemon-list");
 
-/* Legg info-noden og bilde-noden i pokemon-noden */
-pokemonNode.appendChild(pokemonInfoNode);
-pokemonNode.appendChild(pokemonImgNode);
-
-/* Til slutt, legg til pokemon-noden i listen over pokemons */
-const pokemonList = document.getElementById("pokemon-list");
-pokemonList.appendChild(pokemonNode);
+info.appendChild(name);
+info.appendChild(description);
+entry.appendChild(info);
+list.appendChild(entry);
 ```
-
 </details>
 
+### 2c) Bilde av dyret
 
-### 2b) Flere pokemons!
+Et bilde sier mer enn tusen ord! Vi kan hente et bilde av pokemonen vår, slik at den ferdige HTML-strukturen ser slik ut:
 
-Filen `/assets/pokemon.json` inneholder en liste med flere pokemons.
+```html
+<li class="pokemon-entry">
+    <div class="pokemon-info">
+        <h2>Bulbasaur</h2>
+        <p>It can go for days without eating a single morsel. In the bulb on its back, it stores energy.</p>
+    </div>
+    <img loading="lazy" src="https://www.serebii.net/xy/pokemon/001.png" alt="Image of Bulbasaur" />
+</div>
+```
 
-✍️ Bruk koden fra forrige oppgave og lag en funksjon `addPokemon(pokemon, container)` som oppretter et pokemon-element og legger den til i container-elementet. Bruk funksjonen til å bygge opp en pokedex basert på JSON-listen.
+✍️ Fullfør oppgaven ved å legge til et bilde under teksten.
 
-💡 Du kan importere JSON-filen med `import`-syntaksen, gitt at du har lenket til Javascript-koden din med `<script type="module">`. Da vil koden din behandles som en [Javascript-modul](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
+💡 Vi bruker `loading="lazy"` for å aktivere lazy loading i nettleseren. Ved å gjøre dette vil ikke bildene laste ned før man scroller dem inn i syne, og kan spare brukeren – og serveren – for unødvendig last.
 
 <details>
 <summary>🗝 Løsningsforslag</summary>
 
 ```js
-import pokemon from "../../assets/pokemon.json";
+// [Koden fra 2b]
 
-populatePokemonList();
+const image = document.createElement("img");
+image.src = "https://www.serebii.net/xy/pokemon/001.png";
+image.alt = `Image of Bulbasaur`;
+image.loading = "lazy";
 
-export function populatePokemonList() {
-    const pokemonList = document.getElementById("pokemon-list");
+entry.appendChild(image);
+```
+</details>
 
-    pokemon.forEach((pokemon) => {
-        renderPokemon(pokemon, pokemonList);
+
+### 2d) Flere pokemons!
+
+Filen `/assets/pokemon.json` inneholder en liste med flere pokemons.
+
+✍️ Skriv en funksjon `renderPokemon(pokemon, list)` med utgangspunkt i koden fra forrige oppgave. Funksjonen bør opprette et pokemon-element og legge det til i listen. Bruk funksjonen til å bygge opp en pokedex basert på JSON-listen.
+
+💡 Du kan importere JSON-dataen med `import`-syntaksen slik:
+
+```js
+import allPokemons from "../assets/pokemon.json";
+```
+
+Merk at dette er en feature i byggsteget til Parcel – nettleseren ser bare JSON-dataen som en vanlig Javascript-liste.
+
+<details>
+<summary>🗝 Løsningsforslag</summary>
+
+```js
+import allPokemons from "../assets/pokemon.json";
+
+populateList();
+
+export function populateList() {
+    const list = document.getElementById("pokemon-list");
+
+    allPokemons.forEach((pokemon) => {
+        renderPokemon(pokemon, list);
     });
 }
 
-export function renderPokemon(pokemon, container) {
-    console.log("Adding pokemon", pokemon.name);
+function renderPokemon(pokemon, list) {
+    console.log("Rendering pokemon", pokemon.name);
 
-    const pokemonNode = document.createElement("li");
-    pokemonNode.classList.add("pokemon-entry");
+    // Opprett elementene med riktige attributter
+    const entry = document.createElement("li");
+    entry.className = "pokemon-entry";
 
-    const pokemonTitleNode = document.createElement("h2");
-    pokemonTitleNode.innerText = pokemon.name;
+    const name = document.createElement("h2");
+    name.innerText = pokemon.name;
 
-    const pokemonDescNode = document.createElement("p");
-    pokemonDescNode.innerText = pokemon.description;
+    const description = document.createElement("p");
+    description.innerText = pokemon.description;
 
-    const pokemonImgNode = document.createElement("img");
-    pokemonImgNode.src = pokemon.image;
-    pokemonImgNode.alt = `Image of ${pokemon.name}`;
+    const info = document.createElement("div");
+    info.className = "pokemon-info";
 
-    const pokemonInfoNode = document.createElement("div");
-    pokemonInfoNode.classList.add("pokemon-info");
-    pokemonInfoNode.appendChild(pokemonTitleNode);
-    pokemonInfoNode.appendChild(pokemonDescNode);
+    const image = document.createElement("img");
+    image.src = pokemon.image;
+    image.alt = `Image of ${pokemon.name}`;
+    image.loading = "lazy";
 
-    /* Legg info-noden og bilde-noden i pokemon-noden */
-    pokemonNode.appendChild(pokemonInfoNode);
-    pokemonNode.appendChild(pokemonImgNode);
+    // Sett alle elementene sammen
+    info.appendChild(name);
+    info.appendChild(description);
+    entry.appendChild(info);
+    entry.appendChild(image);
 
-    /* Til slutt, legg til pokemon-noden i listen over pokemons */
-    container.appendChild(pokemonNode);
+    list.appendChild(entry);
 }
 ```
 
@@ -150,63 +210,59 @@ export function renderPokemon(pokemon, container) {
 
 ## Oppgave 3: Hendelser og skjemaer
 
-Til de neste oppgavene trenger vi en server. Den er ferdiglaget, og kan startes i et nytt kommandovindu slik:
+Til de neste oppgavene trenger vi et API. Det er ferdiglaget, og kan startes i et nytt kommandovindu slik:
 
 ```
-cd server && npm run start
+cd server
+npm install
+npm run start
 ```
 
 ### 3a) Åpne dialog
 
-HTML-dokumentet inneholder et skjema for å registrere nye pokemons og sende dem til serveren, men dette er foreløbig skjult bak en dialog.
+Nå har vi klart å tegne opp en liste med kjente pokemons. Men det er noe som mangler – en mulighet for å registrere nye pokemons! Nettsiden inneholder et komplett skjema for å registrere nye pokemons og sende dem til serveren, men dette er foreløbig skjult inni en `dialog`.
 
-✍️ Lag en knapp som åpner dialogen når du trykker på knappen.
+Først, kopier følgende HTML-snutt inn i `index.html`. Dette trenger ikke å tegnes med Javascript siden det er en statisk knapp:
 
-⚠️ Obs! Vi bruker fremdeles ikke serveren i appen vår, så registrerte pokemons vil foreløbig ikke dukke opp i listen.
+```html
+<button id="dialog-button">New pokemon</button>
+```
+
+✍️ Når brukeren trykker på knappen, åpne `dialog`-elementet med `showModal()`-funksjonen.
 
 <details>
 <summary>🗝 Løsningsforslag</summary>
 
-Over dialogen i HTML-strukturen:
-
-```html
-<button id="pokemon-dialog-button">New pokemon</button>
-```
-
 I Javascript:
 
 ```js
-// index.js
-configureDialog();
+configureDialogButton();
 
-export function configureDialog() {
-    const pokemonDialogButton = document.getElementById(
-        "pokemon-dialog-button"
-    );
+export function configureDialogButton() {
+    const button = document.getElementById("dialog-button");
+    const dialog = document.getElementById("pokemon-dialog");
 
-    const pokemonDialog = document.getElementById("pokemon-dialog");
-
-    pokemonDialogButton.addEventListener("click", () => {
-        pokemonDialog.showModal();
+    button.addEventListener("click", () => {
+        dialog.showModal();
     });
 }
 ```
 
 </details>
 
-### 3d) Stopp submit-hendelsen
+### 3b) Stopp submit-hendelsen
 
-Når du registrerer en pokemon i skjemaet, sendes du av gårde til URL-en i `method`-attributten til form-elementet. Dette fungerer greit i tradisjonelle webservere, men vår server er bare et API! Den produserer ikke HTML i seg selv, så siden du lander på ser veldig spartansk ut.
+Når du registrerer en pokemon i skjemaet, sendes du av gårde til URL-en i `method`-attributten til form-elementet. Dette fungerer greit i samarbeid med tradisjonelle webservere, men vi har bare et usselt API! Responsen ser temmelig spartansk ut, så vi ønsker å forbedre denne brukeropplevelsen.
 
-✍️ Vi ønsker å forbedre brukeropplevelsen med Javascript. Uten å endre på HTML-strukturen, stopp submit-hendelsen slik at brukeren forblir på nettsiden etter man har klikket på registreringsknappen.
+✍️ Kun ved hjelp av Javascript, stopp submit-hendelsen slik at brukeren forblir på nettsiden etter man har klikket på registreringsknappen.
 
 <details>
 <summary>🗝 Løsningsforslag</summary>
 
 ```js
-configureForm();
+preventFormFromSubmitting();
 
-export function configureForm() {
+export function preventFormFromSubmitting() {
     const form = document.getElementById("pokemon-form");
 
     form.addEventListener("submit", (event) => {
@@ -214,26 +270,27 @@ export function configureForm() {
     });
 }
 ```
-
 </details>
 
-### 3c) Bonusoppgave: Lukk modalen
+### 3c) Lukk modalen (Bonusoppgave)
 
-Du kan lukke en dialog ved å trykke på Escape. Men vi ønsker i tillegg å lukke modalen når brukeren trykker utenfor modalets omkrets.
+Du kan lukke en dialog ved å trykke på Escape. Det er også anbefalt å la brukeren lukke dialogen med en egen knapp. Men det blir for lett for oss – vi ønsker å lukke dialogen når brukeren trykker utenfor dens rammer!
 
 ✍️ Lukk modalen når bruker trykker utenfor modalen.
 
 <details>
 <summary>🗝 Løsningsforslag</summary>
 
+Dialog-elementet legger seg over alt annet og vil derfor plukke opp klikk over alt på skjermen. En mulig løsning er å lytte på klikk og sjekke om klikk-hendelsens posisjon er utenfor rammene til dialogen med `.getBoundingClientRect()`.
+
 ```js
-configureCloseDialog();
+closeDialogOnClickOutside();
 
-export function configureCloseDialog() {
-    const pokemonDialog = document.getElementById("pokemon-dialog");
+export function closeDialogOnClickOutside() {
+    const dialog = document.getElementById("pokemon-dialog");
 
-    pokemonDialog.addEventListener("click", (event) => {
-        const rectangle = pokemonDialog.getBoundingClientRect();
+    dialog.addEventListener("click", (event) => {
+        const rectangle = dialog.getBoundingClientRect();
 
         if (
             event.clientY < rectangle.top ||
@@ -241,19 +298,32 @@ export function configureCloseDialog() {
             event.clientX < rectangle.left ||
             event.clientX > rectangle.right
         ) {
-            pokemonDialog.close();
+            dialog.close();
         }
     });
 }
 ```
 
+En annen løsning innebærer å wrappe innholdet til dialogen i en `div`. Når brukeren klikker på dialog-elementet, sjekk om `divElement.contains(event.target)`.
+
 </details>
 
 ## Oppgave 4: Serverkommunikasjon med Javascript
 
-Nå skjer det ingenting når vi registrerer en ny pokemon. La oss gjøre noe med det!
+Vi har fjernet standardoppførselen til skjemaet, men vi har ikke implementert noe alternativ i Javascript. Derfor har vi foreløbig et skjema som ikke fungerer. La oss gjøre noe med det!
 
 ### 4a) Lagre pokemons på serveren
+
+Ta utgangspunkt i koden fra oppgave 3b.
+
+✍️ Når skjemaet submittes, gjør en `POST`-request til `/api/pokemon` som inneholder feltene som en JSON-string. Lukk dialogen og nullstill skjemaet hvis API-et responderer positivt.
+
+💡 Du kan trekke ut data fra et skjemaelement og konvertere det til et key/value-object slik:
+
+```js
+const formData = new FormData(formElement);
+const data = Object.fromEntries(formData);
+```
 
 <details>
 <summary>🗝 Løsningsforslag</summary>
@@ -276,8 +346,6 @@ export function handleFormSubmit() {
 }
 
 async function registerPokemon(pokemon) {
-    console.log("formdata", pokemon);
-
     const response = await fetch("/api/pokemon", {
         method: "POST",
         body: JSON.stringify(pokemon),
@@ -294,32 +362,42 @@ async function registerPokemon(pokemon) {
     }
 }
 ```
-
 </details>
+
+
+--- GJENNOMGANG PAUSET HER ----
+
 
 ### 4b) Hent pokemons fra serveren
 
-Bruke Fetch til å hente data fra serveren. Tegn opp dataen med funksjonen fra oppgave 2.
+Pokemonene vi registrerer vises ikke i listen, fordi denne fremdeles tegnes med data fra den statiske filen under `/assets/pokemon.json`. For å se registrerte pokemons må vi hente dem fra API-et vårt.
+
+✍️ Hent pokemons fra serveren i stedet for å lese fra fil, og bruk `renderPokemon`-funksjonen vi har laget fra før til å tegne dem opp i pokemonlisten.
 
 <details>
 <summary>🗝 Løsningsforslag</summary>
 
 ```js
-const pokemonList = document.getElementById("pokemon-list");
+const list = document.getElementById("pokemon-list");
 
-populatePokemonsFromServer();
+populateListFromAPI();
 
-export async function populatePokemonsFromServer() {
+export async function populateListFromAPI() {
     const response = await fetch("/api/pokemon");
-    const pokemons = await response.json();
 
-    // Fjern alt fra listen
-    pokemonList.textContent = "";
+    if (response.ok) {
+        const pokemons = await response.json();
 
-    // Legg til pokemons fra server
-    pokemons.forEach((pokemon) => {
-        renderPokemon(pokemon, pokemonList);
-    });
+        // Tøm listen først
+        list.textContent = "";
+
+        // Tegn deretter opp pokemons
+        pokemons.forEach((pokemon) => {
+            renderPokemon(pokemon, list);
+        });
+    } else {
+        console.log("Klarte ikke å hente pokemons fra API-et:", error);
+    }
 }
 ```
 

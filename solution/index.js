@@ -1,13 +1,15 @@
+import { populateList } from "./oppgave2";
 import {
-    configureDialog,
-    configureCloseDialog,
-    configureForm,
+    configureDialogButton,
+    closeDialogOnClickOutside,
+    preventFormFromSubmitting,
 } from "./oppgave3";
-import { handleFormSubmit, populatePokemonListFromServer } from "./oppgave4";
+import { handleFormSubmit, populateListFromAPI } from "./oppgave4";
 
-configureDialog();
-configureCloseDialog();
-configureForm();
+// populateList();
+configureDialogButton();
+closeDialogOnClickOutside();
+// preventFormFromSubmitting();
 
 handleFormSubmit();
-populatePokemonListFromServer();
+populateListFromAPI();

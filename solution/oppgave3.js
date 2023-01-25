@@ -1,18 +1,15 @@
 /* Oppgave 3a) */
-export function configureDialog() {
-    const pokemonDialogButton = document.getElementById(
-        "pokemon-dialog-button"
-    );
+export function configureDialogButton() {
+    const button = document.getElementById("dialog-button");
+    const dialog = document.getElementById("pokemon-dialog");
 
-    const pokemonDialog = document.getElementById("pokemon-dialog");
-
-    pokemonDialogButton.addEventListener("click", () => {
-        pokemonDialog.showModal();
+    button.addEventListener("click", () => {
+        dialog.showModal();
     });
 }
 
-/* Oppgave 3c) */
-export function configureForm() {
+/* Oppgave 3b) */
+export function preventFormFromSubmitting() {
     const form = document.getElementById("pokemon-form");
 
     form.addEventListener("submit", (event) => {
@@ -20,12 +17,12 @@ export function configureForm() {
     });
 }
 
-/* Oppgave 3b) */
-export function configureCloseDialog() {
-    const pokemonDialog = document.getElementById("pokemon-dialog");
+/* Oppgave 3c) */
+export function closeDialogOnClickOutside() {
+    const dialog = document.getElementById("pokemon-dialog");
 
-    pokemonDialog.addEventListener("click", (event) => {
-        const rectangle = pokemonDialog.getBoundingClientRect();
+    dialog.addEventListener("click", (event) => {
+        const rectangle = dialog.getBoundingClientRect();
 
         if (
             event.clientY < rectangle.top ||
@@ -33,7 +30,7 @@ export function configureCloseDialog() {
             event.clientX < rectangle.left ||
             event.clientX > rectangle.right
         ) {
-            pokemonDialog.close();
+            dialog.close();
         }
     });
 }

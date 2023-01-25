@@ -1,38 +1,39 @@
-import pokemon from "../assets/pokemon.json";
+import allPokemons from "../assets/pokemon.json";
 
-export function populatePokemonList() {
-    const pokemonList = document.getElementById("pokemon-list");
+export function populateList() {
+    const list = document.getElementById("pokemon-list");
 
-    pokemon.forEach((pokemon) => {
-        renderPokemon(pokemon, pokemonList);
+    allPokemons.forEach((pokemon) => {
+        renderPokemon(pokemon, list);
     });
 }
 
-export function renderPokemon(pokemon, container) {
-    console.log("Adding pokemon", pokemon.name);
+export function renderPokemon(pokemon, list) {
+    console.log("Rendering pokemon", pokemon.name);
 
-    const pokemonNode = document.createElement("li");
-    pokemonNode.classList.add("pokemon-entry");
+    // Opprett elementene med riktige attributter
+    const entry = document.createElement("li");
+    entry.className = "pokemon-entry";
 
-    const pokemonTitleNode = document.createElement("h2");
-    pokemonTitleNode.innerText = pokemon.name;
+    const name = document.createElement("h2");
+    name.innerText = pokemon.name;
 
-    const pokemonDescNode = document.createElement("p");
-    pokemonDescNode.innerText = pokemon.description;
+    const description = document.createElement("p");
+    description.innerText = pokemon.description;
 
-    const pokemonImgNode = document.createElement("img");
-    pokemonImgNode.src = pokemon.image;
-    pokemonImgNode.alt = `Image of ${pokemon.name}`;
+    const info = document.createElement("div");
+    info.className = "pokemon-info";
 
-    const pokemonInfoNode = document.createElement("div");
-    pokemonInfoNode.classList.add("pokemon-info");
-    pokemonInfoNode.appendChild(pokemonTitleNode);
-    pokemonInfoNode.appendChild(pokemonDescNode);
+    const image = document.createElement("img");
+    image.src = pokemon.image;
+    image.alt = `Image of ${pokemon.name}`;
+    image.loading = "lazy";
 
-    /* Legg info-noden og bilde-noden i pokemon-noden */
-    pokemonNode.appendChild(pokemonInfoNode);
-    pokemonNode.appendChild(pokemonImgNode);
+    // Sett alle elementene sammen
+    info.appendChild(name);
+    info.appendChild(description);
+    entry.appendChild(info);
+    entry.appendChild(image);
 
-    /* Til slutt, legg til pokemon-noden i listen over pokemons */
-    container.appendChild(pokemonNode);
+    list.appendChild(entry);
 }

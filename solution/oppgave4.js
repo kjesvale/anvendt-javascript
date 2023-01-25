@@ -2,7 +2,7 @@ import { renderPokemon } from "./oppgave2";
 
 const form = document.getElementById("pokemon-form");
 const dialog = document.getElementById("pokemon-dialog");
-const pokemonList = document.getElementById("pokemon-list");
+const list = document.getElementById("pokemon-list");
 
 /* Oppgave 4a) */
 export function handleFormSubmit() {
@@ -17,8 +17,6 @@ export function handleFormSubmit() {
 }
 
 async function registerPokemon(pokemon) {
-    console.log("formdata", pokemon);
-
     const response = await fetch("/api/pokemon", {
         method: "POST",
         body: JSON.stringify(pokemon),
@@ -38,15 +36,20 @@ async function registerPokemon(pokemon) {
 }
 
 /* Oppgave 4b) */
-export async function populatePokemonListFromServer() {
+export async function populateListFromAPI() {
     const response = await fetch("/api/pokemon");
-    const pokemons = await response.json();
 
-    // Fjern alt fra listen
-    pokemonList.textContent = "";
+    if (response.ok) {
+        const pokemons = await response.json();
 
-    // Legg til pokemons fra server
-    pokemons.forEach((pokemon) => {
-        renderPokemon(pokemon, pokemonList);
-    });
+        // Tøm listen først
+        list.textContent = "";
+
+        // Tegn deretter opp pokemons
+        pokemons.forEach((pokemon) => {
+            renderPokemon(pokemon, list);
+        });
+    } else {
+        console.log("Klarte ikke å hente pokemons fra API-et:", error);
+    }
 }
