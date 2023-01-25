@@ -364,10 +364,6 @@ async function registerPokemon(pokemon) {
 ```
 </details>
 
-
---- GJENNOMGANG PAUSET HER ----
-
-
 ### 4b) Hent pokemons fra serveren
 
 Pokemonene vi registrerer vises ikke i listen, fordi denne fremdeles tegnes med data fra den statiske filen under `/assets/pokemon.json`. For å se registrerte pokemons må vi hente dem fra API-et vårt.
@@ -400,10 +396,9 @@ export async function populateListFromAPI() {
     }
 }
 ```
-
 </details>
 
-### 4c) Bonusoppgave: Validering av skjemaet
+### 4c) Validering av skjemaet (Bonusoppgave)
 
 Hittil har vi ennå ikke noe validering av feltene ved registrering av nye pokemons, utenom at de er tagget med `required` i HTML-en.
 
