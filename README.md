@@ -324,3 +324,13 @@ export async function populatePokemonsFromServer() {
 ```
 
 </details>
+
+### 4c) Bonusoppgave: Validering av skjemaet
+
+Hittil har vi ennå ikke noe validering av feltene ved registrering av nye pokemons, utenom at de er tagget med `required` i HTML-en.
+
+✍️ Implementer validering i Javascript. Her er noen forslag:
+
+1. Bruk Javascript til å skru av den innebygde skjemavalideringen med [novalidate-attributten](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-novalidate), slik at den ikke spenner bein på vår egen validering.
+2. Når brukeren forsøker å sende inn skjemaet, valider at navn, beskrivelse og type er satt til fornuftige verdier.
+3. Hvis ikke, vis en feilmelding i bunn av skjemaet og fokuser på det første skjemafeltet som inneholder en feil.
