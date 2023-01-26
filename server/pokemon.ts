@@ -5,7 +5,7 @@ export type Pokemon = {
     number: number;
     name: string;
     type: PokemonType;
-    description: string;
+    description?: string;
     image: string;
 };
 

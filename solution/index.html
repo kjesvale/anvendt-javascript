@@ -8,52 +8,53 @@
     </head>
     <body>
         <h1 id="title">Pokédex</h1>
-        <p>A catalogue of known and captured pokemons.</p>
+        <p>En indeks over kjente pokemons.</p>
 
         <!-- Oppgave 3 -->
-        <button id="dialog-button">New pokemon</button>
+        <button id="dialog-button">Ny pokemon</button>
 
         <!-- Prekode til oppgave 3 -->
         <dialog id="pokemon-dialog">
-            <h2>Register new pokemon</h2>
+            <h2>Registrer ny pokemon</h2>
             <form id="pokemon-form" method="POST" action="/api/pokemon">
-                <label for="name-input">Name</label>
+                <label for="name-input">Navn*</label>
                 <input
                     required
                     name="name"
                     id="name-input"
                     type="text"
-                    placeholder="Enter name"
+                    placeholder='For eksempel "Pikachu"'
                 />
 
-                <label for="type-select">Type</label>
+                <label for="type-select">Type*</label>
                 <select required name="type" id="type-select">
-                    <option value="">-- Choose a type --</option>
+                    <option value="">-- Velg en type --</option>
                     <option value="fire">Fire</option>
                     <option value="water">Water</option>
                     <option value="grass">Grass</option>
                     <option value="electric">Electric</option>
                 </select>
 
-                <label for="description-input">Description</label>
+                <label for="description-input">Beskrivelse</label>
                 <textarea
-                    required
                     name="description"
                     id="description-input"
-                    placeholder="Write a short description"
+                    placeholder="Skriv en kort beskrivelse"
                 ></textarea>
 
-                <label for="number-input">Number</label>
+                <label for="number-input">Nummer*</label>
                 <input
                     required
                     name="number"
                     id="number-input"
                     type="number"
-                    placeholder="Enter number"
+                    placeholder="Tall mellom 1 og 386"
+                    min="1"
+                    max="386"
                 />
 
                 <button type="submit" id="submit-button">
-                    Register pokemon
+                    Registrer pokemon
                 </button>
             </form>
         </dialog>

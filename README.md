@@ -79,7 +79,7 @@ En av Pokedexens viktigste egenskap er å gi oss en beskrivelse av hver Pokemon.
 <li class="pokemon-entry">
     <div class="pokemon-info">
         <h2>Bulbasaur</h2>
-        <p>It can go for days without eating a single morsel. In the bulb on its back, it stores energy.</p>
+        <p>A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon.</p>
     </div>
 </div>
 ```
@@ -119,9 +119,9 @@ Et bilde sier mer enn tusen ord! Vi kan hente et bilde av pokemonen vår, slik a
 <li class="pokemon-entry">
     <div class="pokemon-info">
         <h2>Bulbasaur</h2>
-        <p>It can go for days without eating a single morsel. In the bulb on its back, it stores energy.</p>
+        <p>A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon.</p>
     </div>
-    <img loading="lazy" src="https://www.serebii.net/xy/pokemon/001.png" alt="Image of Bulbasaur" />
+    <img loading="lazy" src="https://www.serebii.net/xy/pokemon/001.png" alt="Bilde av Bulbasaur" />
 </div>
 ```
 
@@ -137,7 +137,7 @@ Et bilde sier mer enn tusen ord! Vi kan hente et bilde av pokemonen vår, slik a
 
 const image = document.createElement("img");
 image.src = "https://www.serebii.net/xy/pokemon/001.png";
-image.alt = `Image of Bulbasaur`;
+image.alt = `Bilde av Bulbasaur`;
 image.loading = "lazy";
 
 entry.appendChild(image);
@@ -193,7 +193,7 @@ function renderPokemon(pokemon, list) {
 
     const image = document.createElement("img");
     image.src = pokemon.image;
-    image.alt = `Image of ${pokemon.name}`;
+    image.alt = `Bilde av ${pokemon.name}`;
     image.loading = "lazy";
 
     // Sett alle elementene sammen

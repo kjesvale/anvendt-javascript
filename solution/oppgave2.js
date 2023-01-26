@@ -9,7 +9,7 @@ export function populateList() {
 }
 
 export function renderPokemon(pokemon, list) {
-    console.log("Rendering pokemon", pokemon.name);
+    console.log("Tegner pokemon", pokemon.name);
 
     // Opprett elementene med riktige attributter
     const entry = document.createElement("li");
@@ -26,7 +26,7 @@ export function renderPokemon(pokemon, list) {
 
     const image = document.createElement("img");
     image.src = pokemon.image;
-    image.alt = `Image of ${pokemon.name}`;
+    image.alt = `Bilde av ${pokemon.name}`;
     image.loading = "lazy";
 
     // Sett alle elementene sammen
