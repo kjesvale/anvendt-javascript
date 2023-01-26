@@ -6,7 +6,6 @@
         "prestart": "rm -rf dist",
         "start": "parcel src/*.html",
         "start:solution": "parcel solution/*.html",
-        "start:sandbox": "parcel sandbox/*.html",
         "prebuild": "rm -rf dist",
         "build": "parcel build src/*.html",
         "build:solution": "parcel build solution/*.html"
