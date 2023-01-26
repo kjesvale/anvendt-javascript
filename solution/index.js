@@ -1,15 +1,11 @@
-import { populateList } from "./oppgave2";
-import {
-    configureDialogButton,
-    closeDialogOnClickOutside,
-    preventFormFromSubmitting,
-} from "./oppgave3";
-import { handleFormSubmit, populateListFromAPI } from "./oppgave4";
+import * as oppgave2 from "./oppgave2";
+import * as oppgave3 from "./oppgave3";
+import * as oppgave4 from "./oppgave4";
 
-// populateList();
-configureDialogButton();
-closeDialogOnClickOutside();
-// preventFormFromSubmitting();
+// oppgave2.populateList();
 
-handleFormSubmit();
-populateListFromAPI();
+oppgave3.configureDialogButton();
+oppgave3.populateListFromAPI();
+oppgave3.closeDialogOnClickOutside();
+
+oppgave4.handleFormSubmit();

@@ -70,7 +70,7 @@ document.getElementById("pokemon-list").appendChild(entry);
 ```
 </details>
 
-### 2b) Beskrivelse
+### 2b) Legg på beskrivelse
 
 En av Pokedexens viktigste egenskap er å gi oss en beskrivelse av hver Pokemon. Utvid koden fra forrige oppgave til å tegne opp følgende HTML-struktur:
 
@@ -145,7 +145,7 @@ entry.appendChild(image);
 </details>
 
 
-### 2d) Flere pokemons!
+### 2d) Tegn flere pokemons
 
 Filen `/assets/pokemon.json` inneholder en liste med flere pokemons.
 
@@ -208,7 +208,7 @@ function renderPokemon(pokemon, list) {
 
 </details>
 
-## Oppgave 3: Hendelser og skjemaer
+## Oppgave 3: Hendelser og standard skjemaoppførsel
 
 Til de neste oppgavene trenger vi et API. Det er ferdiglaget, og kan startes i et nytt kommandovindu slik:
 
@@ -218,15 +218,17 @@ npm install
 npm run start
 ```
 
-### 3a) Åpne dialog
+### 3a) Vis registreringsskjema
 
 Nå har vi klart å tegne opp en liste med kjente pokemons. Men det er noe som mangler – en mulighet for å registrere nye pokemons! Nettsiden inneholder et komplett skjema for å registrere nye pokemons og sende dem til serveren, men dette er foreløbig skjult inni en `dialog`.
 
-Først, kopier følgende HTML-snutt inn i `index.html`. Dette trenger ikke å tegnes med Javascript siden det er en statisk knapp:
+Først, kopier følgende HTML-snutt inn i `index.html`.
 
 ```html
 <button id="dialog-button">New pokemon</button>
 ```
+
+Deretter,
 
 ✍️ Når brukeren trykker på knappen, åpne `dialog`-elementet med `showModal()`-funksjonen.
 
@@ -250,24 +252,36 @@ export function configureDialogButton() {
 
 </details>
 
-### 3b) Stopp submit-hendelsen
+### 3b) Hent pokemons fra serveren
 
-Når du registrerer en pokemon i skjemaet, sendes du av gårde til URL-en i `method`-attributten til form-elementet. Dette fungerer greit i samarbeid med tradisjonelle webservere, men vi har bare et usselt API! Responsen ser temmelig spartansk ut, så vi ønsker å forbedre denne brukeropplevelsen.
+Pokemonene vi registrerer vises ikke i listen, fordi denne fremdeles tegnes med data fra den statiske filen under `/assets/pokemon.json`. For å se registrerte pokemons må vi hente dem fra API-et vårt.
 
-✍️ Kun ved hjelp av Javascript, stopp submit-hendelsen slik at brukeren forblir på nettsiden etter man har klikket på registreringsknappen.
+✍️ Ved å bruke _Fetch_, hent pokemons fra serveren i stedet for å lese fra fil, og bruk `renderPokemon`-funksjonen vi har laget fra før til å tegne dem opp i pokemonlisten.
 
 <details>
 <summary>🗝 Løsningsforslag</summary>
 
 ```js
-preventFormFromSubmitting();
+const list = document.getElementById("pokemon-list");
 
-export function preventFormFromSubmitting() {
-    const form = document.getElementById("pokemon-form");
+populateListFromAPI();
 
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
-    });
+export async function populateListFromAPI() {
+    const response = await fetch("/api/pokemon");
+
+    if (response.ok) {
+        const pokemons = await response.json();
+
+        // Tøm listen først
+        list.textContent = "";
+
+        // Tegn deretter opp pokemons
+        pokemons.forEach((pokemon) => {
+            renderPokemon(pokemon, list);
+        });
+    } else {
+        console.log("Klarte ikke å hente pokemons fra API-et:", error);
+    }
 }
 ```
 </details>
@@ -308,15 +322,45 @@ En annen løsning innebærer å wrappe innholdet til dialogen i en `div`. Når b
 
 </details>
 
-## Oppgave 4: Serverkommunikasjon med Javascript
+## Oppgave 4: Forbedrede skjemaer med Javascript
+
+Nå har vi en fullt fungerende registreringsflyt for nye pokemons:
+
+1. Først henter alle pokemons fra serveren
+2. Deretter åpner vi skjemaet og fyller ut informasjonen
+3. Så sender vi inn skjemaet, og blir omdirigert tilbake til forsiden, hvor vi gjentar prosessen fra steg 1.
+
+Dette fungerer, men i denne oppgaven skal vi gjøre opplevelsen enda bedre ved hjelp av Javascript.
+
+### 4a) Forhindre standard skjemaoppførsel
+
+Først skal vi hindre submit-hendelsen fra å utføre en full sidelast.
+
+✍️ Kun ved hjelp av Javascript, stopp submit-hendelsen slik at brukeren forblir på nettsiden etter man har klikket på registreringsknappen.
+
+<details>
+<summary>🗝 Løsningsforslag</summary>
+
+Her huker vi tak i skjemaelementet, lytter til _submit_-hendelsen og kjører `event.preventDefault()`
+
+```js
+preventFormSubmit();
+
+export function preventFormSubmit() {
+    const form = document.getElementById("pokemon-form");
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+    });
+}
+```
+</details>
+
+### 4b) Lagre pokemons på serveren
 
 Vi har fjernet standardoppførselen til skjemaet, men vi har ikke implementert noe alternativ i Javascript. Derfor har vi foreløbig et skjema som ikke fungerer. La oss gjøre noe med det!
 
-### 4a) Lagre pokemons på serveren
-
-Ta utgangspunkt i koden fra oppgave 3b.
-
-✍️ Når skjemaet submittes, gjør en `POST`-request til `/api/pokemon` som inneholder feltene som en JSON-string. Lukk dialogen og nullstill skjemaet hvis API-et responderer positivt.
+✍️ Når skjemaet submittes, gjør en `POST`-request til `/api/pokemon` som inneholder feltene som en _JSON-string_. Lukk dialogen og nullstill skjemaet hvis API-et responderer positivt.
 
 💡 Du kan trekke ut data fra et skjemaelement og konvertere det til et key/value-object slik:
 
@@ -327,6 +371,8 @@ const data = Object.fromEntries(formData);
 
 <details>
 <summary>🗝 Løsningsforslag</summary>
+
+Her bruker vi _Fetch_ med skjemafeltene enkodet som en JSON-string. Vi setter også på `Content-Type: application/json` i headeren slik at serveren vet dataen er enkodet som JSON og ikke skjemaformat (`application/x-www-form-urlencoded`).
 
 ```js
 const form = document.getElementById("pokemon-form");
@@ -359,40 +405,6 @@ async function registerPokemon(pokemon) {
 
         dialog.close();
         form.reset();
-    }
-}
-```
-</details>
-
-### 4b) Hent pokemons fra serveren
-
-Pokemonene vi registrerer vises ikke i listen, fordi denne fremdeles tegnes med data fra den statiske filen under `/assets/pokemon.json`. For å se registrerte pokemons må vi hente dem fra API-et vårt.
-
-✍️ Hent pokemons fra serveren i stedet for å lese fra fil, og bruk `renderPokemon`-funksjonen vi har laget fra før til å tegne dem opp i pokemonlisten.
-
-<details>
-<summary>🗝 Løsningsforslag</summary>
-
-```js
-const list = document.getElementById("pokemon-list");
-
-populateListFromAPI();
-
-export async function populateListFromAPI() {
-    const response = await fetch("/api/pokemon");
-
-    if (response.ok) {
-        const pokemons = await response.json();
-
-        // Tøm listen først
-        list.textContent = "";
-
-        // Tegn deretter opp pokemons
-        pokemons.forEach((pokemon) => {
-            renderPokemon(pokemon, list);
-        });
-    } else {
-        console.log("Klarte ikke å hente pokemons fra API-et:", error);
     }
 }
 ```

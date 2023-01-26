@@ -1,3 +1,7 @@
+import { renderPokemon } from "./oppgave2";
+
+const list = document.getElementById("pokemon-list");
+
 /* Oppgave 3a) */
 export function configureDialogButton() {
     const button = document.getElementById("dialog-button");
@@ -9,12 +13,22 @@ export function configureDialogButton() {
 }
 
 /* Oppgave 3b) */
-export function preventFormFromSubmitting() {
-    const form = document.getElementById("pokemon-form");
+export async function populateListFromAPI() {
+    const response = await fetch("/api/pokemon");
 
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
-    });
+    if (response.ok) {
+        const pokemons = await response.json();
+
+        // Tøm listen først
+        list.textContent = "";
+
+        // Tegn deretter opp pokemons
+        pokemons.forEach((pokemon) => {
+            renderPokemon(pokemon, list);
+        });
+    } else {
+        console.log("Klarte ikke å hente pokemons fra API-et:", error);
+    }
 }
 
 /* Oppgave 3c) */
