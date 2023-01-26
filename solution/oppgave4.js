@@ -26,8 +26,6 @@ async function registerPokemon(pokemon) {
     });
 
     if (response.ok) {
-        window.alert(await response.text());
-
         dialog.close();
         form.reset();
 
