@@ -31,7 +31,7 @@ async function registerPokemon(pokemon) {
         dialog.close();
         form.reset();
 
-        populatePokemonListFromServer();
+        populateListFromAPI();
     }
 }
 

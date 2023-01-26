@@ -43,7 +43,15 @@ app.post("/api/pokemon", (req, res) => {
         const message = `Stored pokemon entry #${pokemon.number}, the ${pokemon.type} type pokemon «${pokemon.name}»!`;
 
         console.log(message);
-        res.status(201).send(message);
+
+        if (req.headers["content-type"] === "application/json") {
+            // Responder som et API
+            res.status(201).send(message);
+        } else {
+            // Anta at forespørselen kommer fra et form,
+            // og redirect tilbake til startsiden
+            res.redirect("/");
+        }
     } catch (e) {
         const message = `Klarte ikke å lagre pokemon fordi «body» var på feil format.`;
 
