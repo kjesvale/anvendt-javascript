@@ -326,7 +326,7 @@ En annen løsning innebærer å wrappe innholdet til dialogen i en `div`. Når b
 
 Nå har vi en fullt fungerende registreringsflyt for nye pokemons:
 
-1. Først henter alle pokemons fra serveren
+1. Først henter vi alle pokemons fra serveren
 2. Deretter åpner vi skjemaet og fyller ut informasjonen
 3. Så sender vi inn skjemaet, og blir omdirigert tilbake til forsiden, hvor vi gjentar prosessen fra steg 1.
 
