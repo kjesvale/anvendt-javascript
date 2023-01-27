@@ -26,7 +26,7 @@ Nå vil nettsiden kjøre på [http://localhost:1234](http://localhost:1234), og 
 
 ## Oppgavene
 
-Løs oppgavene i `src`-mappen. Alle oppgavene har et løsningsforslag, som du kan avsløre ved å klikke på nøkkelsymbolet:
+Løs oppgavene i `src`-mappen. Alle oppgavene har et løsningsforslag, som du kan avsløre ved å klikke på nøkkelsymbolet.
 
 - ✍️ Oppgave
 - 💡 Hint, tips eller triks
@@ -41,7 +41,7 @@ Hvis du åpner `src`-mappen, ser du at nettsiden bare består av to filer: en `i
 
 ✍️ Lag en Javascript-fil `index.js` som du importerer fra `index.html`. Logg noe til konsollen, og verifiser at det logges i nettleseren.
 
-💡 Bruk gjerne syntaksen `<script type="module">`. Dette forteller nettleseren at scriptet følger det nye modulsystemet i Javascript, og du kan bruke `import`- og `export`-syntaksen for å lenke mellom filer. Da er det lett å splitte opp koden i flere filer når det føles naturlig.
+💡 Bruk gjerne `type="module"`-attributten. Dette forteller nettleseren at scriptet følger [det nye modulsystemet i Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), og du kan bruke `import`- og `export`-syntaksen for å lenke mellom filer. Da er det lett å splitte opp koden i flere filer når det føles naturlig.
 
 ## Oppgave 2: Manipulering av HTML
 
@@ -59,6 +59,10 @@ Hvis du åpner `index.html`, ser du at siden vår inneholder en tom liste med id
 
 <details>
 <summary>🗝 Løsningsforslag</summary>
+
+Først oppretter vi et listeelement med `document.createElement`. Deretter setter vi `className`-attributten og endrer den indre tekstnoden til navnet på pokemonen.
+
+Til slutt henter vi en referanse til selve listen, og legger til listeelementet som en barnenode.
 
 ```js
 const entry = document.createElement("li");
@@ -86,6 +90,8 @@ En av Pokedexens viktigste egenskap er å gi oss en beskrivelse av hver Pokemon.
 
 <details>
 <summary>🗝 Løsningsforslag</summary>
+
+Dette likner veldig på forrige oppgave, men vi må komponere litt nøyere fordi navnet og beskrivelsen skal plasseres inni et `div`-element.
 
 ```js
 // Opprett elementene med riktige attributter
@@ -147,7 +153,7 @@ entry.appendChild(image);
 
 ### 2d) Tegn flere pokemons
 
-Filen `/assets/pokemon.json` inneholder en liste med flere pokemons.
+Filen `/assets/pokemon.json` inneholder en liste med flere pokemons på et gitt format.
 
 ✍️ Skriv en funksjon `renderPokemon(pokemon, list)` med utgangspunkt i koden fra forrige oppgave. Funksjonen bør opprette et pokemon-element og legge det til i listen. Bruk funksjonen til å bygge opp en pokedex basert på JSON-listen.
 
@@ -161,6 +167,10 @@ Merk at dette er en feature i byggsteget til Parcel – nettleseren ser bare JSO
 
 <details>
 <summary>🗝 Løsningsforslag</summary>
+
+Her har vi generalisert koden fra forrige oppgave til en funksjon. Vi lar funksjonen tar inn et pokemon-objekt, og bruker feltene som som de heter i JSON-filen.
+
+Vi har også laget en `populateList`-funksjon som henter referansen til listen og kjører `renderPokemon`-funksjonen for hver pokemon i filen.
 
 ```js
 import allPokemons from "../assets/pokemon.json";
@@ -235,7 +245,7 @@ Deretter,
 <details>
 <summary>🗝 Løsningsforslag</summary>
 
-I Javascript:
+Her henter vi referanser til knappen og dialogen, og lytter på "click"-hendelser for å bestemme når dialogen skal åpnes.
 
 ```js
 configureDialogButton();
@@ -260,6 +270,8 @@ Pokemonene vi registrerer vises ikke i listen, fordi denne fremdeles tegnes med 
 
 <details>
 <summary>🗝 Løsningsforslag</summary>
+
+Her har vi utvidet funksjonen fra oppgave 2d) til å hente pokemons fra serveren i stedet for å lese fra fil. Vi tømmer også listen først i tilfelle vi ønsker å kjøre funksjonen flere ganger.
 
 ```js
 const list = document.getElementById("pokemon-list");
