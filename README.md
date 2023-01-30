@@ -43,6 +43,8 @@ Hvis du åpner `src`-mappen, ser du at nettsiden bare består av to filer: en `i
 
 💡 Bruk gjerne `type="module"`-attributten. Dette forteller nettleseren at scriptet følger [det nye modulsystemet i Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), og du kan bruke `import`- og `export`-syntaksen for å lenke mellom filer. Da er det lett å splitte opp koden i flere filer når det føles naturlig.
 
+💡 **Notat om Typescript**: Parcel støtter Typescript ut av boksen, så hvis du føler deg komfortabel med det, kan du gjerne skrive Typescript i stedet for Javascript. I så fall trenger du bare å lagre filene med `.ts`-endelsen i stedet for `.js`. Merk at løsningsforslagene underveis er skrevet i Javascript.
+
 ## Oppgave 2: Manipulering av HTML
 
 Foreløbig er det ikke så mye spennende på nettsiden vår. I denne oppgaven skal vi benytte Javascript og DOM-en til å tegne opp, eller «rendre» mer innhold – dynamisk!
