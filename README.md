@@ -294,7 +294,7 @@ export async function populateListFromAPI() {
             renderPokemon(pokemon, list);
         });
     } else {
-        console.log("Klarte ikke å hente pokemons fra API-et:", error);
+        console.log("Klarte ikke å hente pokemons fra API-et:", response.statusText);
     }
 }
 ```
