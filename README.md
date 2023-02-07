@@ -87,7 +87,7 @@ En av Pokedexens viktigste egenskap er å gi oss en beskrivelse av hver Pokemon.
         <h2>Bulbasaur</h2>
         <p>A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon.</p>
     </div>
-</div>
+</li>
 ```
 
 <details>
@@ -130,7 +130,7 @@ Et bilde sier mer enn tusen ord! Vi kan hente et bilde av pokemonen vår, slik a
         <p>A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon.</p>
     </div>
     <img loading="lazy" src="https://www.serebii.net/xy/pokemon/001.png" alt="Bilde av Bulbasaur" />
-</div>
+</li>
 ```
 
 ✍️ Fullfør oppgaven ved å legge til et bilde under teksten.
