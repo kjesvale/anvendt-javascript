@@ -14,7 +14,7 @@ export function configureDialogButton() {
 
 /* Oppgave 3b) */
 export async function populateListFromAPI() {
-    const response = await fetch("/api/pokemon");
+    const response = await fetch("http://localhost:3000/api/pokemon");
 
     if (response.ok) {
         const pokemons = await response.json();

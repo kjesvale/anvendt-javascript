@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { getInitialPokemons, Pokemon } from "./pokemon";
 
 const app = express();
@@ -10,6 +11,12 @@ const pokemons = getInitialPokemons();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(
+    cors({
+        origin: "http://localhost:1234",
+    })
+);
 
 app.get("/api/pokemon", (_, res) => {
     const pokemonsSortedByNumber = Array.from(Object.values(pokemons)).sort(

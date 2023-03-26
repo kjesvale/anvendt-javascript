@@ -230,6 +230,8 @@ npm install
 npm run start
 ```
 
+Etter dette vil serveren kjøre på [localhost:3000/api](http://localhost:3000/api).
+
 ### 3a) Vis registreringsskjema
 
 Nå har vi klart å tegne opp en liste med kjente pokemons. Men det er noe som mangler – en mulighet for å registrere nye pokemons! Nettsiden inneholder et komplett skjema for å registrere nye pokemons og sende dem til serveren, men dette er foreløbig skjult inni en `dialog`.
@@ -270,6 +272,8 @@ Pokemonene vi registrerer vises ikke i listen, fordi denne fremdeles tegnes med 
 
 ✍️ Ved å bruke _Fetch_, hent pokemons fra serveren i stedet for å lese fra fil, og bruk `renderPokemon`-funksjonen vi har laget fra før til å tegne dem opp i pokemonlisten.
 
+💡 API-et har et endepunkt på [localhost:3000/api/pokemon](http://localhost:3000/api/pokemon), som returnerer pokemonene som er lagret på serveren. Dette er CORS-konfigurert til å håndtere trafikk fra klienten.
+
 <details>
 <summary>🗝 Løsningsforslag</summary>
 
@@ -281,7 +285,7 @@ const list = document.getElementById("pokemon-list");
 populateListFromAPI();
 
 export async function populateListFromAPI() {
-    const response = await fetch("/api/pokemon");
+    const response = await fetch("http://localhost:3000/api/pokemon");
 
     if (response.ok) {
         const pokemons = await response.json();
@@ -374,7 +378,7 @@ export function preventFormSubmit() {
 
 Vi har fjernet standardoppførselen til skjemaet, men vi har ikke implementert noe alternativ i Javascript. Derfor har vi foreløbig et skjema som ikke fungerer. La oss gjøre noe med det!
 
-✍️ Når skjemaet submittes, gjør en `POST`-request til `/api/pokemon` som inneholder feltene som en _JSON-string_. Lukk dialogen og nullstill skjemaet hvis API-et responderer positivt.
+✍️ Når skjemaet submittes, gjør en `POST`-request til [http://localhost:3000/api/pokemon](http://localhost:3000/api/pokemon) som inneholder feltene som en _JSON-string_. Lukk dialogen og nullstill skjemaet hvis API-et responderer positivt.
 
 💡 Du kan trekke ut data fra et skjemaelement og konvertere det til et key/value-object slik:
 
@@ -406,7 +410,7 @@ export function handleFormSubmit() {
 }
 
 async function registerPokemon(pokemon) {
-    const response = await fetch("/api/pokemon", {
+    const response = await fetch("http://localhost:3000/api/pokemon", {
         method: "POST",
         body: JSON.stringify(pokemon),
         headers: {

@@ -18,7 +18,7 @@ export function handleFormSubmit() {
 
 /* Oppgave 4b) */
 async function registerPokemon(pokemon) {
-    const response = await fetch("/api/pokemon", {
+    const response = await fetch("http://localhost:3000/api/pokemon", {
         method: "POST",
         body: JSON.stringify(pokemon),
         headers: {
