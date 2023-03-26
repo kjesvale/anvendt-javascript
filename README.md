@@ -1,6 +1,6 @@
 # Anvendt Javascript
 
-En workshop for frontendprogrammet til Bekk.
+En workshop for frontendprogrammet.
 
 Målet med workshopen er å lære seg konsepter innen Javascript; DOM-en, hendelser, asynkronitet og nettverkskall. Og samtidig lage en aldri så liten [Pokédex](https://github.com/kjesvale/anvendt-javascript/blob/main/assets/screenshots/register-pokemon.png)!
 
