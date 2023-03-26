@@ -8,7 +8,8 @@
         "start:solution": "parcel solution/*.html",
         "prebuild": "rm -rf dist",
         "build": "parcel build src/*.html",
-        "build:solution": "parcel build solution/*.html"
+        "build:solution": "parcel build solution/*.html",
+        "reset": "rm -rf dist .parcel-cache"
     },
     "devDependencies": {
         "parcel": "^2.3.1",
