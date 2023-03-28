@@ -56,7 +56,7 @@ app.post("/api/pokemon", (req, res) => {
         } else {
             // Anta at forespørselen kommer fra et form,
             // og redirect tilbake til startsiden
-            res.redirect("/");
+            res.redirect("http://localhost:1234");
         }
     } catch (e) {
         const message = `Klarte ikke å lagre pokemon fordi «body» var på feil format.`;
