@@ -89,6 +89,7 @@ textarea {
 
 .pokemon-entry img {
     transition: transform 200ms;
+    image-rendering: pixelated;
 }
 
 .enlarge {
