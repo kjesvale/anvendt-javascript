@@ -24,6 +24,12 @@ npm run start
 
 Nå vil nettsiden kjøre på [http://localhost:1234](http://localhost:1234), og lastes på nytt hver gang du gjør endringer i `src`-mappen.
 
+Hvis det skjer noe rart under utvikling, kan du prøve å slette cachen til Parcel ved å kjøre:
+
+```
+npm run reset
+```
+
 ## Oppgavene
 
 Løs oppgavene i `src`-mappen. Alle oppgavene har et løsningsforslag, som du kan avsløre ved å klikke på nøkkelsymbolet.
