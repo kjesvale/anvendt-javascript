@@ -250,7 +250,7 @@ Først, kopier følgende HTML-snutt inn i `index.html`.
 
 Deretter,
 
-✍️ Når brukeren trykker på knappen, åpne `dialog`-elementet med `showModal()`-funksjonen.
+✍️ Når brukeren trykker på knappen, åpne `dialog`-elementet med [`showModal()`-funksjonen](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal).
 
 <details>
 <summary>🗝 Løsningsforslag</summary>
